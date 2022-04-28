@@ -10,7 +10,6 @@ String uid = request.getParameter("uid");
 String uname = request.getParameter("uname");
 String schoolname = request.getParameter("schoolname");
 String gradeclass = request.getParameter("gradeclass");
-String upw = request.getParameter("upw");
 String route = request.getParameter("route");
 String boardingplace = request.getParameter("boardingplace");
 
@@ -19,7 +18,7 @@ String url = "jdbc:mysql://localhost:3306/garam?characterEncoding=UTF-8&serverTi
 String user = "root";
 String password = "smart";
 StringBuffer qry = new StringBuffer();
-qry.append(" INSERT INTO g_member (uname, schoolname, gradeclass, uid, upw, route, boardingplace, joindate) VALUES (?, ?, ?, ?, ?, ?, ?, now()) ");
+qry.append(" UPDATE g_member SET uname = ?, schoolname = ?, gradeclass = ?, route = ?, boardingplace = ? WHERE uid = ? ");
 
 
 String sql = qry.toString();
@@ -39,14 +38,13 @@ try {
 	stmt.setString(1, uname);
 	stmt.setString(2, schoolname);
 	stmt.setString(3, gradeclass);
-	stmt.setString(4, uid);
-	stmt.setString(5, upw);
-	stmt.setString(6, route);
-	stmt.setString(7, boardingplace);
+	stmt.setString(4, route);
+	stmt.setString(5, boardingplace);
+	stmt.setString(6, uid);
 	
 	res = stmt.executeUpdate();
 } catch(Exception e){
-	
+	e.getLocalizedMessage();
 } finally {
 	//닫기
 	if(stmt != null) stmt.close();
@@ -59,12 +57,12 @@ try {
 System.out.println("res:" + res);
 if(res <= 0){
 %>
-	alert("회원가입에 실패했습니다.");
+	alert("회원수정이 실패했습니다.");
 	history.go(-1);
 <%
 } else {
 %>
-	location.href="join03.jsp";
+	location.href="logout.jsp";
 <%	
 }
 %>
