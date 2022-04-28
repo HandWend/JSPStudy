@@ -76,7 +76,7 @@ public void createLoc(Connection conn, PreparedStatement stmt,
 		stmt.setString(3, lon);
 		
 		stmt.executeUpdate();
-	} catch(Exception e){ e.getLocalizedMessage();}
+	} catch(Exception e){}
 	System.out.println("등록");
 }
 %>
@@ -90,15 +90,16 @@ public void createLoc(Connection conn, PreparedStatement stmt,
 <script>
 var lat = <%=lat %>; // 위도
 var lon = <%=lon %>; // 경도
- if (navigator.geolocation) {
+
+if (navigator.geolocation) {
     //위치 정보를 얻기
-    navigator.geolocation.watchPosition (function(pos) {
+    navigator.geolocation.getCurrentPosition (function(pos) {
     	lat = pos.coords.latitude;     // 위도
     	lon = pos.coords.longitude; // 경도
     });
 } else {
     alert("이 브라우저에서는 Geolocation이 지원되지 않습니다.")
-} 
+}
 </script>  
 </head>
 
@@ -149,7 +150,18 @@ var positions = [
 			conn.close();
 	}
     %>
-   
+    {
+        title: '생태연못', 
+        latlng: new kakao.maps.LatLng(36.02606723102794, 129.35782655191446)
+    },
+    {
+        title: '텃밭', 
+        latlng: new kakao.maps.LatLng(36.029134023955756, 129.35215009093756)
+    },
+    {
+        title: '근린공원',
+        latlng: new kakao.maps.LatLng(33.451393, 126.570738)
+    }
 ];
 
 // 마커 이미지의 이미지 주소입니다

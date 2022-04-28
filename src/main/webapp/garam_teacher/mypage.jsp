@@ -62,23 +62,7 @@ try {
 <link rel="stylesheet" type="text/css" href="style.css">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
-<script>
-	var lat;// 위도
-	var lon;// 경도
 
-	if (navigator.geolocation) {
-		//위치 정보를 얻기
-		navigator.geolocation.getCurrentPosition(function(pos) {
-			lat = pos.coords.latitude; // 위도
-			lon = pos.coords.longitude; // 경도
-			
-			document.getElementById("map");
-			map.href= = map.href + "?lat= " +lat +"&lon= " + lon;
-		});
-	} else {
-		alert("이 브라우저에서는 Geolocation이 지원되지 않습니다.")
-	}
-</script>
 </head>
 
 <body class="page02">
@@ -153,5 +137,24 @@ try {
 				<p>이용내역</p></a></li>
 		</ul>
 	</div>
+<script>
+	var lat;// 위도
+	var lon;// 경도
+
+	if (navigator.geolocation) {
+		//위치 정보를 얻기
+		navigator.geolocation.getCurrentPosition(function(pos) {
+			lat = pos.coords.latitude; // 위도
+			lon = pos.coords.longitude; // 경도
+			
+			map = document.getElementById("map");
+			if(map == null) alert("새로고침하세요");
+			map.href = map.href + "?lat=" +lat +"&lon=" + lon;
+		});
+	} else {
+		alert("이 브라우저에서는 Geolocation이 지원되지 않습니다.");
+	}
+</script>	
+	
 </body>
 </html>
