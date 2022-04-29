@@ -2,6 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+/* db암호화를 해둔 데이터만 넘어간다. */
+/* 이전에 db암호화를 하지 않고 그냥 넘긴 데이터로는 mypage.jsp로 넘어가지 않는다.ㄴ */
 request.setCharacterEncoding("UTF-8");
 
 String uid = request.getParameter("uid");
@@ -13,7 +15,7 @@ String password = "smart";
 
 StringBuffer qry = new StringBuffer();
 qry.append(" SELECT * FROM g_member "); 
-qry.append(" WHERE uid = ? AND upw = ? ");
+qry.append(" WHERE uid = ? AND upw = sha1(?) ");
 
 String sql = qry.toString();
 

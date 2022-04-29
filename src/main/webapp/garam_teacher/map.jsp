@@ -95,6 +95,8 @@ var lon = <%=lon %>; // 경도
     navigator.geolocation.watchPosition (function(pos) {
     	lat = pos.coords.latitude;     // 위도
     	lon = pos.coords.longitude; // 경도
+    	console.log(lat);
+    	console.log(lon);
     });
 } else {
     alert("이 브라우저에서는 Geolocation이 지원되지 않습니다.")

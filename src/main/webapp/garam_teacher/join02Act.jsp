@@ -14,12 +14,12 @@ String upw = request.getParameter("upw");
 String route = request.getParameter("route");
 String boardingplace = request.getParameter("boardingplace");
 
-//JDBC프로그램밍
+//JDBC프로그래밍
 String url = "jdbc:mysql://localhost:3306/garam?characterEncoding=UTF-8&serverTimezone=Asia/Seoul";
 String user = "root";
 String password = "smart";
 StringBuffer qry = new StringBuffer();
-qry.append(" INSERT INTO g_member (uname, schoolname, gradeclass, uid, upw, route, boardingplace, joindate) VALUES (?, ?, ?, ?, ?, ?, ?, now()) ");
+qry.append(" INSERT INTO g_member (uname, schoolname, gradeclass, uid, upw, route, boardingplace, joindate) VALUES (?, ?, ?, ?, sha1(?), ?, ?, now()) ");
 
 
 String sql = qry.toString();

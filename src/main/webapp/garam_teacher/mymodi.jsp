@@ -134,7 +134,7 @@ try {
 	<script>
 	$(document).ready(function() {
 		$("#submit").click(function() {
-			
+			location.href="login.jsp";
 	});
 	
 	</script>

@@ -33,38 +33,27 @@ if ((agree == null && "Y".equals(agree)) || method.equals("GET")) {
 	<div class="pd16">
 		<form method="post" action="join02Act.jsp">
 		<input type="" name="uid" id="uid">
-			<div>
-				<h4>이름</h4>
-				<input type="text" name="uname" id="uname">
-			</div>
+			<div><h4>이름</h4><input type="text" name="uname" id="uname"></div>
 
-			<div>
-				<h4>학교</h4>
-				<input type="text" name="schoolname" id="schoolname">
-			</div>
+			<div><h4>학교</h4><input type="text" name="schoolname" id="schoolname"></div>
 
-			<div>
-				<h4>학년/반</h4>
-				<input type="text" name="gradeclass" id="gradeclass">
-			</div>
+			<div><h4>학년/반</h4><input type="text" name="gradeclass" id="gradeclass"></div>
 
 			<div class="pnum">
-				<div>
-					<h4 class="inline">휴대폰번호</h4>
-					<span>(※휴대폰 번호가 ID로 설정됩니다.)</span>
-				</div>
-				<input type="text" id="phone1"> - <input type="text"
-					id="phone2"> - <input type="text" id="phone3">
+				<div><h4 class="inline">휴대폰번호</h4><span>(※휴대폰 번호가 ID로 설정됩니다.)</span></div>
+				<input type="text" id="phone1" onkeydown="phReg1()"> - <input type="text"
+					id="phone2"  onkeydown="phReg2()"> - <input type="text" id="phone3"  onkeydown="phReg3()">
+			</div>
+			
+			<!-- if (!/^[0-9]{3}-[0-9]{3,4}-[0-9]{4}/.test(phoneNumber)) 
+			return res.json({ isSuccess: false, code: , message: "숫자, -을 포함해 휴대전화 형식에 맞게 입력해주세요.", });
+-->
+
+			<div><h4 class="inline">비밀번호</h4><span>(※최대 12자리)</span> 
+				<input type="password" maxlength='12' id="upw" name="upw" >
 			</div>
 
-			<div>
-				<h4 class="inline">비밀번호</h4>
-				<span>(※최대 12자리)</span> <input type="password" maxlength='12' id="upw"
-					name="upw">
-			</div>
-
-			<div>
-				<h4>비밀번호 확인</h4>
+			<div><h4>비밀번호 확인</h4>
 				<input type="password" maxlength='12' id="upwApply">
 			</div>
 
@@ -97,6 +86,11 @@ if ((agree == null && "Y".equals(agree)) || method.equals("GET")) {
 		</form>
 	</div>
 	<script>
+	
+	var idReg = /^[a-z0-9]{5,20}$/;
+	var nameReg = /^[가-힣]{2,6}/;
+	
+	
 	$(document).ready(function() {
 		$("#submit").click(function() {
 			if ($("#uname").val() == '') {
@@ -124,6 +118,8 @@ if ((agree == null && "Y".equals(agree)) || method.equals("GET")) {
 				alert("비밀번호");
 				return false;
 			}
+			
+			
 
 			if ($("#upw").val() != $("#upwApply").val()) {
 				alert("비밀번호가 일치하지 않습니다");
@@ -163,6 +159,36 @@ if ((agree == null && "Y".equals(agree)) || method.equals("GET")) {
 		   });
 	})
 	
+	
+	var phoneNum = '010-xxxx-xxxx'; 
+    var patternPhone = /01[016789]-[^0][0-9]{2,3}-[0-9]{3,4}/;
+    // var patternPhone = new RegExp("01[016789]-[^0][0-9]{2,3}-[0-9]{3,4}");  
+
+   //둘중에 하나골라 쓰면 된다.
+    if(!patternPhone.test(phoneNum)) {
+        alert('핸드폰 번호를 확인 해주세요');
+        return;
+    }  
+    if ($("#phReg1").text())
+		
+		$("#member_phone").keydown(function() {
+			arr[6] = false;
+			var member_phone = $("#member_phone").val().trim();
+			if (phoneR.test(member_phone) == false) {
+				$("#phone_check").text('휴대폰번호를 다시 입력해주세요.');
+			} else {
+				$("#phone_check").text('');
+				arr[6] = true;
+			}
+		})
+	
+	</script>
+	var phoneReg = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
+	<script>
+	function phReg1() {
+		
+		var phReg1 = /^01([0|1|6|7|8|9]?)/;
+	}
 	</script>
 </body>
 </html>
